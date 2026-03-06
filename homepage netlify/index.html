@@ -246,6 +246,38 @@
     .footer-links { display: flex; gap: 1.5rem; }
     .footer-links a { color: var(--muted); text-decoration: none; transition: color .2s; }
     .footer-links a:hover { color: #fff; }
+
+    /* ── MOBILE ── */
+    @media (max-width: 600px) {
+      nav { padding: 1rem 5%; }
+      .nav-cta { font-size: .75rem; padding: .45rem 1rem; }
+      .nav-cta-long { display: none; }
+      .nav-cta-short { display: inline; }
+
+      .hero { padding: 6rem 5% 3.5rem; }
+      .hero h1 { font-size: 2.6rem; }
+      .hero-sub { font-size: .95rem; }
+      .hero-actions { flex-direction: column; align-items: center; }
+      .hero-actions a { width: 100%; text-align: center; }
+      .hero-stats { gap: 1.5rem; margin-top: 2.5rem; }
+      .stat-sep { display: none; }
+
+      section { padding: 4rem 5%; }
+
+      .audio-player {
+        flex-wrap: wrap; gap: 1rem; padding: 1.5rem;
+      }
+      .play-btn { flex-shrink: 0; }
+      .audio-bars { order: 3; width: 100%; flex-basis: 100%; }
+      .audio-label { font-size: .8rem; }
+      .audio-dur { font-size: .8rem; }
+
+      .cta-section { padding: 2.5rem 1.5rem; border-radius: 16px; }
+      .cta-section h2 { font-size: 1.75rem; }
+
+      footer { flex-direction: column; text-align: center; }
+      .footer-links { justify-content: center; }
+    }
   </style>
 </head>
 <body>
@@ -253,7 +285,10 @@
   <!-- NAV -->
   <nav>
     <div class="nav-logo">kiinec</div>
-    <a href="https://cal.com" class="nav-cta" target="_blank">Kostenloses Erstgespräch</a>
+    <a href="https://cal.com" class="nav-cta" target="_blank">
+      <span class="nav-cta-long">Kostenloses Erstgespräch</span>
+      <span class="nav-cta-short" style="display:none">Termin buchen</span>
+    </a>
   </nav>
 
   <!-- HERO -->
