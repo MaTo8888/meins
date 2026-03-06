@@ -339,6 +339,7 @@
       <p class="section-body" style="margin: 0 auto; text-align:center;">
         Natürlich. Kompetent. Kein Roboter-Feeling.
       </p>
+      <audio id="hoerprobe-audio" src="hoerprobe.mp4" preload="metadata"></audio>
       <div class="audio-player">
         <button class="play-btn" onclick="toggleAudio(this)">
           <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
@@ -442,20 +443,31 @@
   </footer>
 
   <script>
+    const audio = document.getElementById('hoerprobe-audio');
+
     function toggleAudio(btn) {
-      // Visual toggle – in production verlinken Sie hier Ihre echte Audio-Datei
       const bars = btn.closest('.audio-player').querySelectorAll('.bar');
-      const isPlaying = btn.dataset.playing === '1';
-      if (isPlaying) {
-        btn.dataset.playing = '0';
-        btn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="#fff"/></svg>';
-        bars.forEach(b => b.style.animationPlayState = 'paused');
-      } else {
+      if (audio.paused) {
+        audio.play();
         btn.dataset.playing = '1';
         btn.innerHTML = '<svg viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16" fill="#fff"/><rect x="14" y="4" width="4" height="16" fill="#fff"/></svg>';
         bars.forEach(b => b.style.animationPlayState = 'running');
+      } else {
+        audio.pause();
+        btn.dataset.playing = '0';
+        btn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="#fff"/></svg>';
+        bars.forEach(b => b.style.animationPlayState = 'paused');
       }
     }
+
+    audio.addEventListener('ended', () => {
+      const btn = document.querySelector('.play-btn');
+      const bars = document.querySelectorAll('.bar');
+      btn.dataset.playing = '0';
+      btn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="#fff"/></svg>';
+      bars.forEach(b => b.style.animationPlayState = 'paused');
+    });
+
     // Start paused
     document.querySelectorAll('.bar').forEach(b => b.style.animationPlayState = 'paused');
   </script>
